@@ -8,7 +8,7 @@ function inputNum() {
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
-  const num = prompt("How many grid do you want?", "<100");
+  const num = prompt("How many grids do you want?", "<100");
 
   container.style.gridTemplateColumns = `repeat(${num}, 1fr)`;
   makeGrids(num);
@@ -21,7 +21,6 @@ function makeGrids(n) {
     container.appendChild(divs);
     divs.style.opacity = 0;
   }
-
   const grids = container.querySelectorAll(".grid");
   grids.forEach((grid) => {
     grid.addEventListener("mouseenter", paint);
@@ -29,10 +28,13 @@ function makeGrids(n) {
 }
 
 function paint() {
-  let opa = Number(window.getComputedStyle(this).getPropertyValue("opacity"));
+  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  let thisStyle = window.getComputedStyle(this);
+  let opa = Number(thisStyle.getPropertyValue("opacity"));
+  // let opa = Number(window.getComputedStyle(this).getPropertyValue("opacity"));
   if (opa < 1) {
-    opa = opa + 0.1;
+    opa += 0.1;
     this.style.opacity = opa;
+    this.style.background = `#${randomColor}`;
   }
-  this.style.background = `rgb(0, 0, 0)`;
 }
