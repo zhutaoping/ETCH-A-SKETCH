@@ -2,17 +2,14 @@
 
 const container = document.querySelector(".container");
 const clickBtn = document.querySelector(".cl-btn");
-clickBtn.addEventListener("click", clear);
+clickBtn.addEventListener("click", inputNum);
 
-function clear() {
+function inputNum() {
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
-  inputNum();
-}
-
-function inputNum() {
   const num = prompt("How many grids do you want?", "<100");
+
   container.style.gridTemplateColumns = `repeat(${num}, 1fr)`;
   makeGrids(num);
 }
@@ -20,7 +17,7 @@ function inputNum() {
 function makeGrids(n) {
   for (i = 0; i < n * n; i++) {
     let divs = document.createElement("div");
-    divs.classList.add("grid");
+    divs.classList.add(`grid`);
     container.appendChild(divs);
     divs.style.opacity = 0;
   }
