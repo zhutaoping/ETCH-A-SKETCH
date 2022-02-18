@@ -30,11 +30,9 @@ function makeGrids(n) {
 function paint() {
   const randomColor = Math.floor(Math.random() * 16777215).toString(16);
   let opa = Number(window.getComputedStyle(this).getPropertyValue("opacity"));
-  if (!opa) {
-    opa = 0;
-  }
+  if (opa < 1) {
     opa += 0.1;
     this.style.opacity = opa;
-    this.style.background = #ffffff;
+    this.style.background = `#${randomColor}`;
   }
 }
