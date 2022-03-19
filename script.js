@@ -24,8 +24,13 @@ function makeGrids(n) {
     divs.style.opacity = 0.1;
   }
   const grids = container.querySelectorAll(".grid");
-  grids.forEach((grid) => {
-    grid.addEventListener("mouseenter", paint);
+  container.addEventListener("mouseover", function (e) {
+    e.preventDefault();
+
+    if (e.target.classList.contains("grid")) {
+      // that = e.target;
+      paint.call(e.target);
+    }
   });
 }
 
@@ -33,7 +38,7 @@ function paint() {
   // const randomColor = Math.floor(Math.random() * 16777215).toString(16);
   let opa = Number(window.getComputedStyle(this).getPropertyValue("opacity"));
   if (opa < 1) {
-    opa += 0.15;
+    opa += 0.1;
     this.style.opacity = opa;
     this.style.background = "black";
     // this.style.background = `#${randomColor}`;
