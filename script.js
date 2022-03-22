@@ -23,20 +23,26 @@ function makeGrids(n) {
     container.appendChild(divs);
     divs.style.opacity = 0.1;
   }
-  const grids = container.querySelectorAll(".grid");
-  container.addEventListener("mouseover", function (e) {
-    e.preventDefault();
 
-    if (e.target.classList.contains("grid")) {
-      // that = e.target;
-      paint.call(e.target);
-    }
+  const grids = container.querySelectorAll(".grid");
+
+  container.addEventListener("mouseover", function (e) {
+    const gridEl = e.target.closest(".grid");
+    paint.call(e.target);
+
+    // e.preventDefault();
+
+    // if (e.target.classList.contains("grid")) {
+    //   // that = e.target;
+    //   paint.call(e.target);
+    // }
   });
 }
 
 function paint() {
   // const randomColor = Math.floor(Math.random() * 16777215).toString(16);
   let opa = Number(window.getComputedStyle(this).getPropertyValue("opacity"));
+
   if (opa < 1) {
     opa += 0.1;
     this.style.opacity = opa;
